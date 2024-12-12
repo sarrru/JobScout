@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_scout_project/view/welcome_view.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -13,10 +14,10 @@ class _OnboardingViewState extends State<OnboardingView> {
     super.initState();
     // Set a timer to navigate to WelcomeView after 3 seconds
     Future.delayed(const Duration(seconds: 3), () {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => const WelcomeView()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const WelcomeView()),
+      );
     });
   }
 
