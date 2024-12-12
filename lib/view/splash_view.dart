@@ -1,23 +1,23 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:job_scout_project/view/onboarding_view.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashView extends StatefulWidget {
+  const SplashView({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
     // Set a timer to navigate after 4 seconds
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 10), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => const OnboardingView()),
       );
     });
   }
@@ -25,12 +25,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          const Color.fromARGB(255, 195, 141, 205), // Adjust background color
+      backgroundColor: Colors.white, // Adjust background color
       body: Center(
         child: Image.asset(
-          'assets/images/splash.png', // Replace with your image path
-          width: 400, // Adjust size as needed
+          'assets/images/logo.png',
+          width: 400,
           height: 400,
         ),
       ),
