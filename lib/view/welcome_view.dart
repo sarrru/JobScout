@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:job_scout_project/view/login_view.dart';
+import 'package:job_scout_project/view/loginjobseekers_view.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({super.key});
@@ -48,7 +49,8 @@ class WelcomeView extends StatelessWidget {
                 // Navigate to Job Seeker Login Page (LoginView)
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
+                  MaterialPageRoute(
+                      builder: (context) => const LoginjobseekersView()),
                 );
               },
               child: Container(
@@ -56,11 +58,11 @@ class WelcomeView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 10,
-                      offset: const Offset(0, 4),
+                      offset: Offset(0, 4),
                     ),
                   ],
                 ),
@@ -72,10 +74,10 @@ class WelcomeView extends StatelessWidget {
                       width: 50,
                     ),
                     const SizedBox(width: 15),
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "JOB SEEKERS",
                             style: TextStyle(
@@ -103,7 +105,7 @@ class WelcomeView extends StatelessWidget {
                 // Navigate to Company Login Page (LoginView)
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
+                  MaterialPageRoute(builder: (context) => const LoginView()),
                 );
               },
               child: Container(
@@ -111,11 +113,11 @@ class WelcomeView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 10,
-                      offset: const Offset(0, 4),
+                      offset: Offset(0, 4),
                     ),
                   ],
                 ),
@@ -127,10 +129,10 @@ class WelcomeView extends StatelessWidget {
                       width: 50,
                     ),
                     const SizedBox(width: 15),
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "COMPANY",
                             style: TextStyle(

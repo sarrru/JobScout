@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:job_scout_project/view/onboarding_view.dart';
 import 'package:job_scout_project/view/splash_view.dart';
 
 class MyApp extends StatelessWidget {
