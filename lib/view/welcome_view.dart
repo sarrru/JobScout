@@ -50,7 +50,7 @@ class WelcomeView extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const LoginjobseekersView()),
+                      builder: (context) => const LoginJobseekersView()),
                 );
               },
               child: Container(
