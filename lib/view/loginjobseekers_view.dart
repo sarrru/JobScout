@@ -44,7 +44,7 @@ class _LoginJobseekersViewState extends State<LoginJobseekersView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F5FF), // Light purple background
+      backgroundColor: const Color(0xFFF9F5FF),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -148,8 +148,7 @@ class _LoginJobseekersViewState extends State<LoginJobseekersView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                const HomepageView()), // Replace NewPage with your target page widget
+                            builder: (context) => const HomepageView()),
                       );
                     }
                   },

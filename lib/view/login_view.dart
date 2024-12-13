@@ -44,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F5FF), // Light purple background
+      backgroundColor: const Color(0xFFF9F5FF),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -186,7 +186,6 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              //  Add your "Forgot Password" logic here
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

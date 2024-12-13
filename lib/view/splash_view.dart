@@ -25,7 +25,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Adjust background color
+      backgroundColor:
+          const Color.fromARGB(255, 242, 235, 244), // Adjust background color
       body: Center(
         child: Image.asset(
           'assets/images/logo.png',

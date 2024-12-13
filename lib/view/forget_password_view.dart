@@ -26,7 +26,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F5FF), // Light purple background
+      backgroundColor: const Color(0xFFF9F5FF),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -93,7 +93,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                           content: Text('Password reset link sent to email!'),
                         ),
                       );
-                      // Add logic to send password reset link here
+                      //  logic to send password reset link
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -115,7 +115,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 // Back to Login Button
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context); // Navigate back to Login
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE7D9F8),
