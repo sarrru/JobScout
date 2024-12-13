@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:job_scout_project/view/forgetpassword_jobseekers_view.dart';
 import 'package:job_scout_project/view/homepage_view.dart';
 import 'package:job_scout_project/view/signup_jobseekers_view.dart';
-import 'package:job_scout_project/view/splash_view.dart';
 import 'package:job_scout_project/view/welcome_view.dart';
 
 class LoginJobseekersView extends StatefulWidget {
@@ -58,7 +58,7 @@ class _LoginJobseekersViewState extends State<LoginJobseekersView> {
           },
         ),
         title: const Text(
-          'Company',
+          'job Seekers',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -177,8 +177,7 @@ class _LoginJobseekersViewState extends State<LoginJobseekersView> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Forgot your password? ',
-                      style: const TextStyle(
-                          color: Colors.black), // Non-clickable part
+                      style: const TextStyle(color: Colors.black),
                       children: [
                         TextSpan(
                           text: 'Reset here',
@@ -188,14 +187,14 @@ class _LoginJobseekersViewState extends State<LoginJobseekersView> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              // / Add your "Forgot Password" logic here
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         const ForgotPasswordView(),
-                              //   ),
-                              // );
+                              // Add your "Forgot Password" logic here
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgetpasswordJobseekersView(),
+                                ),
+                              );
                             },
                         ),
                       ],

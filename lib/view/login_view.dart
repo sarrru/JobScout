@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:job_scout_project/view/dashboar_view.dart';
+import 'package:job_scout_project/view/forget_password_view.dart';
 import 'package:job_scout_project/view/sign_up_view.dart';
 import 'package:job_scout_project/view/welcome_view.dart';
 
@@ -147,8 +148,7 @@ class _LoginViewState extends State<LoginView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                const DashboarView()), // Replace NewPage with your target page widget
+                            builder: (context) => const DashboarView()),
                       );
                     }
                   },
@@ -176,8 +176,7 @@ class _LoginViewState extends State<LoginView> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Forgot your password? ',
-                      style: const TextStyle(
-                          color: Colors.black), // Non-clickable part
+                      style: const TextStyle(color: Colors.black),
                       children: [
                         TextSpan(
                           text: 'Reset here',
@@ -187,14 +186,14 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              // / Add your "Forgot Password" logic here
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         const ForgotPasswordView(),
-                              //   ),
-                              // );
+                              //  Add your "Forgot Password" logic here
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgetPasswordView(),
+                                ),
+                              );
                             },
                         ),
                       ],
