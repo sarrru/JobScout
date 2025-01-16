@@ -7,7 +7,7 @@ class HomepageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Homepage'),
+        title: const Text('Homepage'),
         centerTitle: true,
       ),
     );
