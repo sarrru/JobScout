@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_scout_project/features/auth/presentation/view/sign_up_view.dart';
 
-import '../../../home/presentation/view/home_view.dart';
 import '../view_model/login/login_bloc.dart';
 
 class LoginView extends StatefulWidget {
@@ -137,10 +136,15 @@ class _LoginViewState extends State<LoginView> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<LoginBloc>().add(
-                            NavigateHomeScreenEvent(
-                              destination: const HomeView(),
+                            LoginUserEvent(
                               context: context,
+                              username: _usernameController.text,
+                              password: _passwordController.text,
                             ),
+                            // NavigateHomeScreenEvent(
+                            //   destination: const HomeView(),
+                            //   context: context,
+                            // ),
                           );
                     }
                   },
