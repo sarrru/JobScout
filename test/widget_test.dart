@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:job_scout_project/app/app.dart';
-// Replace with the correct import path for your MyApp class
 
-void main() {
+Future<void> main() async {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(
-        App()); // Ensure MyApp is correctly imported or replace with the actual widget
+    await tester.pumpWidget(MyApp()); // Correct: Calling app() as a function
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
