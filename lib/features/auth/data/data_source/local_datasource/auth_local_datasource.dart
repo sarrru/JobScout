@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:job_scout_project/core/network/hive_service.dart';
 import 'package:job_scout_project/features/auth/data/data_source/auth_data_source.dart';
 import 'package:job_scout_project/features/auth/data/model/auth_hive_model.dart';
-import 'package:job_scout_project/features/auth/domain/entity/auth_entity.dart';
+import 'package:job_scout_project/features/auth/domain/entity/auth_entity';
 
 class AuthLocalDataSource implements IAuthDataSource {
   final HiveService _hiveService;
@@ -12,21 +12,17 @@ class AuthLocalDataSource implements IAuthDataSource {
 
   @override
   Future<AuthEntity> getCurrentUser() {
-    // Return Empty AuthEntity
     return Future.value(AuthEntity(
-      userId: "1",
-      fName: "",
-      lName: "",
-      image: null,
-      phone: "",
-      // courses: [],
-      username: "",
-      password: "", email: '',
-    ));
+        authId: '1',
+        email: '',
+        contactNo: '',
+        image: null,
+        username: '',
+        password: ''));
   }
 
   @override
-  Future<String> loginStudent(String username, String password) async {
+  Future<String> loginUser(String username, String password) async {
     try {
       await _hiveService.login(username, password);
       return Future.value("Success");
@@ -36,10 +32,10 @@ class AuthLocalDataSource implements IAuthDataSource {
   }
 
   @override
-  Future<void> registerStudent(AuthEntity student) async {
+  Future<void> registerUser(AuthEntity user) async {
     try {
       // Convert AuthEntity to AuthHiveModel
-      final authHiveModel = AuthHiveModel.fromEntity(student);
+      final authHiveModel = AuthHiveModel.fromEntity(user);
 
       await _hiveService.register(authHiveModel);
       return Future.value();

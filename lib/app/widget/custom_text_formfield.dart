@@ -28,4 +28,3 @@ class CustomTextFormField extends StatelessWidget {
     );
   }
 }
-

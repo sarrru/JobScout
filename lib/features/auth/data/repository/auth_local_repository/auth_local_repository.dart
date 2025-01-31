@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:job_scout_project/core/error/failure.dart';
-import 'package:job_scout_project/features/auth/data/data_source/local_data_source/auth_local_datasource.dart';
-import 'package:job_scout_project/features/auth/domain/entity/auth_entity.dart';
+import 'package:job_scout_project/features/auth/data/data_source/local_datasource/auth_local_datasource.dart';
+import 'package:job_scout_project/features/auth/domain/entity/auth_entity';
 import 'package:job_scout_project/features/auth/domain/repository/auth_repository.dart';
 
 class AuthLocalRepository implements IAuthRepository {
@@ -22,22 +22,9 @@ class AuthLocalRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> loginStudent(
-    String email,
-    String password,
-  ) async {
+  Future<Either<Failure, void>> registerUser(AuthEntity user) async {
     try {
-      final token = await _authLocalDataSource.loginStudent(email, password);
-      return Right(token);
-    } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> registerStudent(AuthEntity student) async {
-    try {
-      return Right(_authLocalDataSource.registerStudent(student));
+      return Right(_authLocalDataSource.registerUser(user));
     } catch (e) {
       return Left(LocalDatabaseFailure(message: e.toString()));
     }
@@ -45,6 +32,18 @@ class AuthLocalRepository implements IAuthRepository {
 
   @override
   Future<Either<Failure, String>> uploadProfilePicture(File file) async {
+    // TODO: implement uploadProfilePicture
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, String>> loginUser(
+      String username, String password) async {
+    try {
+      final token = await _authLocalDataSource.loginUser(username, password);
+      return (Right(token));
+    } catch (e) {
+      return Left(LocalDatabaseFailure(message: e.toString()));
+    }
   }
 }

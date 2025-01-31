@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:job_scout_project/features/auth/domain/entity/auth_entity.dart';
+import 'package:job_scout_project/features/auth/domain/entity/auth_entity';
 
 abstract interface class IAuthDataSource {
-  Future<String> loginStudent(String username, String password);
+  Future<String> loginUser(String username, String password);
 
-  Future<void> registerStudent(AuthEntity student);
+  Future<void> registerUser(AuthEntity user);
 
   Future<AuthEntity> getCurrentUser();
 

@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:job_scout_project/features/splash/presentation/view_model/splash_cubit.dart';
+import 'package:job_scout_project/features/splash/presentation/view/onboarding_view.dart';
+
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -13,8 +15,17 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    context.read<SplashCubit>().init(context);
+    //Timer to navigate to the next screen after 3 seconds.
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => OnboardingView()),
+      );
+    });
   }
+
+// Timer(const Duration(seconds: 3), () {
+//   Navigator.pushReplacementNamed(context, '/login');
+// });
 
   @override
   Widget build(BuildContext context) {

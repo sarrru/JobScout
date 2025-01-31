@@ -7,6 +7,7 @@ import 'package:job_scout_project/features/auth/presentation/view_model/signup/r
 import 'package:job_scout_project/features/home/presentation/view/home_view.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
 
+
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -23,38 +24,32 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         _homeCubit = homeCubit,
         _loginUseCase = loginUseCase,
         super(LoginState.initial()) {
-    on<NavigateRegisterScreenEvent>(
-      (event, emit) {
-        Navigator.push(
-          event.context,
-          MaterialPageRoute(
-            builder: (context) => MultiBlocProvider(
-              providers: [
-                BlocProvider.value(value: _registerBloc),
-              ],
-              child: event.destination,
-            ),
+    on<NavigateRegisterScreenEvent>((event, emit) {
+      Navigator.push(
+        event.context,
+        MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: _registerBloc,
+            child: event.destination,
           ),
-        );
-      },
-    );
+        ),
+      );
+    });
 
-    on<NavigateHomeScreenEvent>(
-      (event, emit) {
-        Navigator.pushReplacement(
-          event.context,
-          MaterialPageRoute(
-            builder: (context) => BlocProvider.value(
-              value: _homeCubit,
-              child: event.destination,
-            ),
+    on<NavigateHomeScreenEvent>((event, emit) {
+      Navigator.pushReplacement(
+        event.context,
+        MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: _homeCubit,
+            child: event.destination,
           ),
-        );
-      },
-    );
+        ),
+      );
+    });
 
-    on<LoginStudentEvent>(
-      (event, emit) async {
+    on<LoginUserEvent>(
+          (event, emit) async {
         emit(state.copyWith(isLoading: true));
         final result = await _loginUseCase(
           LoginParams(
@@ -64,22 +59,32 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
 
         result.fold(
-          (failure) {
+              (l) {
             emit(state.copyWith(isLoading: false, isSuccess: false));
-            showMySnackBar(
+            mySnackBar(
               context: event.context,
               message: "Invalid Credentials",
               color: Colors.red,
             );
           },
-          (token) {
+              (token) {
             emit(state.copyWith(isLoading: false, isSuccess: true));
+
+            // Show success snack bar
+            mySnackBar(
+              context: event.context,
+              message: "Login Successful!",
+              color: Colors.green,
+            );
+
             add(
               NavigateHomeScreenEvent(
                 context: event.context,
-                destination: HomeView(),
+                destination: const HomeView(),
               ),
             );
+
+            // Optionally, store the token in HomeCubit
             //_homeCubit.setToken(token);
           },
         );

@@ -44,8 +44,8 @@ class HomeViewState extends State<HomeView> {
               ),
             ],
             currentIndex: state.selectedIndex,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.white,
+            selectedItemColor: Colors.purple,
+            unselectedItemColor: Colors.black,
             onTap: (index) {
               context.read<HomeCubit>().onTabTapped(index);
             },

@@ -1,92 +1,65 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:job_scout_project/app/constants/hive_table_constant.dart';
 import 'package:job_scout_project/features/auth/data/model/auth_hive_model.dart';
 
-class HiveService {
-  /// Initialize Hive database
-  Future<void> init() async {
-    // Initialize Hive for Flutter
-    await Hive.initFlutter();
+import 'package:path_provider/path_provider.dart';
 
-    // Register adapters
+class HiveService {
+  Future<void> init() async {
+    var directory = await getApplicationCacheDirectory();
+    var path = '${directory.path}movie_ticket_booking.db';
+
+    Hive.init(path);
+
+    //Register Adapter
     Hive.registerAdapter(AuthHiveModelAdapter());
 
-    // Open frequently used boxes
-    await Hive.openBox<AuthHiveModel>(HiveTableConstant.jobseekerBox);
   }
 
-  /// Register a new student
-  Future<void> register(AuthHiveModel auth) async {
-    try {
-      var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.jobseekerBox);
-      await box.put(auth.studentId, auth);
-    } catch (error) {
-      throw Exception("Failed to register student: $error");
-    }
+  // Auth Queries
+  Future<void> register(AuthHiveModel user) async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.authBox);
+    await box.put(user.authId, user);
   }
 
-  /// Delete a student by ID
   Future<void> deleteAuth(String id) async {
-    try {
-      var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.jobseekerBox);
-      await box.delete(id);
-    } catch (error) {
-      throw Exception("Failed to delete student: $error");
-    }
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.authBox);
+    await box.delete(id);
   }
 
-  /// Get all registered students
   Future<List<AuthHiveModel>> getAllAuth() async {
-    try {
-      var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.jobseekerBox);
-      return box.values.toList();
-    } catch (error) {
-      throw Exception("Failed to fetch students: $error");
-    }
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.authBox);
+    return box.values.toList();
   }
 
-  /// Login using username and password
+  // Login using username and password
   Future<AuthHiveModel?> login(String username, String password) async {
-    try {
-      var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.jobseekerBox);
-      var student = box.values.firstWhere(
-        (element) =>
-            element.username == username && element.password == password,
-        orElse: () => throw Exception("Invalid credentials"),
-      );
-      return student;
-    } catch (error) {
-      throw Exception("Login failed: $error");
-    }
+    // var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
+    // var auth = box.values.firstWhere(
+    //     (element) =>
+    //         element.username == username && element.password == password,
+    //     orElse: () => AuthHiveModel.initial());
+    // return auth;
+
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.authBox);
+    var user = box.values.firstWhere((element) =>
+        element.username == username && element.password == password);
+    box.close();
+    return user;
   }
 
-  /// Clear all boxes
   Future<void> clearAll() async {
-    try {
-      await Hive.deleteBoxFromDisk(HiveTableConstant.batchBox);
-      await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
-      await Hive.deleteBoxFromDisk(HiveTableConstant.jobseekerBox);
-      await Hive.deleteBoxFromDisk(HiveTableConstant.categoryBox);
-    } catch (error) {
-      throw Exception("Failed to clear boxes: $error");
-    }
+    await Hive.deleteBoxFromDisk(HiveTableConstant.authBox);
+    // await Hive.deleteBoxFromDisk(HiveTableConstant.);
+    // await Hive.deleteBoxFromDisk(HiveTableConstant.studentBox);
   }
 
-  /// Clear only the student box
-  Future<void> clearStudentBox() async {
-    try {
-      await Hive.deleteBoxFromDisk(HiveTableConstant.jobseekerBox);
-    } catch (error) {
-      throw Exception("Failed to clear student box: $error");
-    }
+  // Clear User Box
+  Future<void> clearUserBox() async {
+    await Hive.deleteBoxFromDisk(HiveTableConstant.authBox);
   }
 
-  /// Close Hive
   Future<void> close() async {
-    try {
-      await Hive.close();
-    } catch (error) {
-      throw Exception("Failed to close Hive: $error");
-    }
+    await Hive.close();
   }
 }

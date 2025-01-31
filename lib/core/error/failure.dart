@@ -6,6 +6,7 @@ abstract class Failure extends Equatable {
   const Failure({
     required this.message,
   });
+
   @override
   List<Object> get props => [message];
 }
@@ -17,13 +18,15 @@ class LocalDatabaseFailure extends Failure {
 }
 
 class ApiFailure extends Failure {
-  final int statusCode;
+  final int? statusCode;
   const ApiFailure({
-    required this.statusCode,
     required super.message,
+    this.statusCode,
   });
 }
 
-// web api ma 
-
-// 
+class SharedPrefsFailure extends Failure {
+  const SharedPrefsFailure({
+    required super.message,
+  });
+}

@@ -2,13 +2,12 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:job_scout_project/core/error/failure.dart';
-import 'package:job_scout_project/features/auth/domain/entity/auth_entity.dart';
+import 'package:job_scout_project/features/auth/domain/entity/auth_entity';
 
 abstract interface class IAuthRepository {
-  Future<Either<Failure, void>> registerStudent(AuthEntity student);
+  Future<Either<Failure, void>> registerUser(AuthEntity user);
 
-  Future<Either<Failure, String>> loginStudent(
-      String username, String password);
+  Future<Either<Failure, String>> loginUser(String username, String password);
 
   Future<Either<Failure, String>> uploadProfilePicture(File file);
 

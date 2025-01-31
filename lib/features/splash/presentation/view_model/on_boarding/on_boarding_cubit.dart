@@ -3,8 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_scout_project/features/auth/presentation/view/login_view.dart';
 import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
 
-class OnboardingCubit extends Cubit<void> {
-  OnboardingCubit(this._loginBloc) : super(null);
+
+class OnboardingCubit extends Cubit<int> {
+  OnboardingCubit(this._loginBloc)
+      : super(0); // Initial state is the first page
+
+  void nextPage(int totalPages) {
+    if (state < totalPages - 1) {
+      emit(state + 1);
+    }
+  }
+
+  void skip() {
+    emit(-1); // Special state to signal skipping
+  }
 
   final LoginBloc _loginBloc;
 
@@ -14,17 +26,7 @@ class OnboardingCubit extends Cubit<void> {
         MaterialPageRoute(
             builder: (_) => BlocProvider.value(
                   value: _loginBloc,
-                  child: LoginView(),
+                  child: const LoginView(),
                 )));
   }
 }
-
-
-// on boarding cubit ma navigation ko all logic matra huncha .
-// yo onloginview lai onboardingpage ko next ma call garna parcha .add... gardai
-
-
-// hamle cubit splash ra onboarding ma matra use garcham.
-// cubit ma state ra event hudaina 
-
-// adhi kunai page arko sanga depend cha bhane di ma dependencies inject garna nabirsau
