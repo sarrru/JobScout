@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:job_scout_project/features/home/presentation/view/bottom_view/dashboard_view.dart';
+import 'package:job_scout_project/features/dashboard/presentation/view/dashboard_view.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_state.dart';
 
