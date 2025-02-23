@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_scout_project/features/auth/presentation/view/login_view.dart';
 import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
 
-
 class OnboardingCubit extends Cubit<int> {
   OnboardingCubit(this._loginBloc)
       : super(0); // Initial state is the first page
@@ -26,7 +25,7 @@ class OnboardingCubit extends Cubit<int> {
         MaterialPageRoute(
             builder: (_) => BlocProvider.value(
                   value: _loginBloc,
-                  child: const LoginView(),
+                  child: LoginView(),
                 )));
   }
 }

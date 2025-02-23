@@ -6,7 +6,6 @@ import 'package:job_scout_project/features/splash/presentation/view/splash_view.
 import 'package:job_scout_project/features/splash/presentation/view_model/on_boarding/on_boarding_cubit.dart';
 import 'package:job_scout_project/features/splash/presentation/view_model/splash_cubit.dart';
 
-
 import 'di/di.dart';
 
 class MyApp extends StatelessWidget {
@@ -27,12 +26,15 @@ class MyApp extends StatelessWidget {
         BlocProvider<RegisterBloc>(
           create: (_) => getIt<RegisterBloc>(),
         ),
+        // BlocProvider<CompanyBloc>(
+        //   create: (_) => getIt<CompanyBloc>(),
+        // ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Movie Ticket Booking',
+        title: 'JobScout',
         // theme: get.getApplicationTheme(isDarkMode: false),
-        theme:  ThemeData(),
+        theme: ThemeData(),
         home: const SplashView(),
       ),
     );
