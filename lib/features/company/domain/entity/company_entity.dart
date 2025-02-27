@@ -13,7 +13,7 @@ class CompanyEntity extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  /// *Constructor*
+  /// **Constructor**
   const CompanyEntity({
     required this.id,
     required this.name,
@@ -28,7 +28,7 @@ class CompanyEntity extends Equatable {
     this.updatedAt,
   });
 
-  /// **Factory Constructor to Create CompanyEntity from JSON**
+  /// **Factory Constructor to Create `CompanyEntity` from JSON**
   factory CompanyEntity.fromJson(Map<String, dynamic> json) {
     return CompanyEntity(
       id: json['_id'] ?? "",
@@ -45,7 +45,7 @@ class CompanyEntity extends Equatable {
     );
   }
 
-  /// *Convert Entity to JSON*
+  /// **Convert Entity to JSON**
   Map<String, dynamic> toJson() {
     return {
       '_id': id,

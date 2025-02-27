@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_scout_project/app/di/di.dart';
 import 'package:job_scout_project/features/auth/presentation/view/login_view.dart';
 import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
+import 'package:job_scout_project/features/company/presentation/view_model/company_bloc.dart';
+import 'package:job_scout_project/features/home/presentation/view/bottom_view/dashboard_view.dart';
+import 'package:job_scout_project/features/jobs/presentation/view/job_view.dart';
+import 'package:job_scout_project/features/jobs/presentation/view_model/job_bloc.dart';
 
 class HomeState extends Equatable {
   final int selectedIndex;
@@ -19,24 +23,24 @@ class HomeState extends Equatable {
     return HomeState(
       selectedIndex: 0,
       views: [
-        const Center(
-          child: Text('Dashboard'),
+        BlocProvider(
+          create: (context) => getIt<JobBloc>(),
+          // child: const CompanyListView(),
+          child: JobViewPage(),
         ),
-
-        // const JobView(),
-
-        // BlocProvider(
-        //   create: (context) => getIt<DashboardBloc>(),
-        //   child: const DashbaordView(),
-
-        // ),
-
+        BlocProvider(
+          create: (context) => getIt<CompanyBloc>(),
+          child: const CompanyListView(),
+        ),
         BlocProvider(
           create: (context) => getIt<LoginBloc>(),
-          child: LoginView(),
+          child: const LoginView(),
         ),
         const Center(
-          child: Text('Account'),
+          child: Text('Jobs'),
+        ),
+        const Center(
+          child: Text('Profile'),
         ),
       ],
     );

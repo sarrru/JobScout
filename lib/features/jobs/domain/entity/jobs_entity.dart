@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:job_scout_project/features/company/domain/entity/company_entity.dart';
 
-
 class JobEntity extends Equatable {
   final String jobId;
   final String title;
@@ -16,7 +15,7 @@ class JobEntity extends Equatable {
   final String createdBy;
   final List<String> applications;
 
-  /// *Constructor*
+  /// **Constructor**
   const JobEntity({
     required this.jobId,
     required this.title,
@@ -32,7 +31,7 @@ class JobEntity extends Equatable {
     required this.applications,
   });
 
-  /// *Empty Constructor with Default Values*
+  /// **Empty Constructor with Default Values**
   const JobEntity.empty()
       : jobId = '',
         title = '',
@@ -47,7 +46,7 @@ class JobEntity extends Equatable {
         createdBy = '',
         applications = const [];
 
-  /// **Factory Constructor to Create JobEntity from JSON**
+  /// **Factory Constructor to Create `JobEntity` from JSON**
   factory JobEntity.fromJson(Map<String, dynamic> json) {
     return JobEntity(
       jobId: json['_id'] as String,
@@ -71,7 +70,7 @@ class JobEntity extends Equatable {
     );
   }
 
-  /// **Method to Convert JobEntity to JSON**
+  /// **Method to Convert `JobEntity` to JSON**
   Map<String, dynamic> toJson() {
     return {
       '_id': jobId,
@@ -89,7 +88,7 @@ class JobEntity extends Equatable {
     };
   }
 
-  /// *CopyWith Method to Create a Modified Copy of the Entity*
+  /// **CopyWith Method to Create a Modified Copy of the Entity**
   JobEntity copyWith({
     String? jobId,
     String? title,

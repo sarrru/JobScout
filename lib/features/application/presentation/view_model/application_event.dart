@@ -1,6 +1,8 @@
+
+
 import 'package:equatable/equatable.dart';
 
-/// *Abstract Parent Class for All Application Events*
+/// **Abstract Parent Class for All Application Events**
 abstract class ApplicationEvent extends Equatable {
   const ApplicationEvent();
 
@@ -8,7 +10,7 @@ abstract class ApplicationEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-/// *Event to Add a New Job Application*
+/// **Event to Add a New Job Application**
 class AddApplication extends ApplicationEvent {
   final String jobId;
   final String applicantId;
@@ -28,10 +30,10 @@ class AddApplication extends ApplicationEvent {
   List<Object?> get props => [jobId, applicantId, status, createdAt, updatedAt];
 }
 
-/// *Event to Fetch All Applications*
+/// **Event to Fetch All Applications**
 class FetchApplications extends ApplicationEvent {}
 
-/// *Event to Delete a Job Application*
+/// **Event to Delete a Job Application**
 class DeleteApplication extends ApplicationEvent {
   final String applicationId;
 

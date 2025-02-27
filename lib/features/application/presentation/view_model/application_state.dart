@@ -1,7 +1,9 @@
+
+
 import 'package:equatable/equatable.dart';
 import 'package:job_scout_project/features/application/domain/entity/application_entity.dart';
 
-/// *Abstract Parent Class for All Application States*
+/// **Abstract Parent Class for All Application States**
 abstract class ApplicationState extends Equatable {
   const ApplicationState();
 
@@ -9,19 +11,19 @@ abstract class ApplicationState extends Equatable {
   List<Object?> get props => [];
 }
 
-/// *Initial State*
+/// **Initial State**
 class ApplicationInitial extends ApplicationState {}
 
-/// *State When an Application is Being Added*
+/// **State When an Application is Being Added**
 class ApplicationAdding extends ApplicationState {}
 
-/// *State When an Application is Successfully Added*
+/// **State When an Application is Successfully Added**
 class ApplicationAdded extends ApplicationState {}
 
-/// *State When Applications Are Being Loaded*
+/// **State When Applications Are Being Loaded**
 class ApplicationsLoading extends ApplicationState {}
 
-/// *State When Applications Are Successfully Loaded*
+/// **State When Applications Are Successfully Loaded**
 class ApplicationsLoaded extends ApplicationState {
   final List<ApplicationEntity> applications;
 
@@ -31,13 +33,13 @@ class ApplicationsLoaded extends ApplicationState {
   List<Object?> get props => [applications];
 }
 
-/// *State When an Application is Being Deleted*
+/// **State When an Application is Being Deleted**
 class ApplicationDeleting extends ApplicationState {}
 
-/// *State When an Application is Successfully Deleted*
+/// **State When an Application is Successfully Deleted**
 class ApplicationDeleted extends ApplicationState {}
 
-/// *State When There is an Error in Application Processing*
+/// **State When There is an Error in Application Processing**
 class ApplicationError extends ApplicationState {
   final String message;
 

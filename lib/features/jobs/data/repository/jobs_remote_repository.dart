@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:job_scout_project/core/error/failure.dart';
-import 'package:job_scout_project/features/jobs/data/data_source/remote_datasource/jobs_remote_datasource.dart';
-
+import 'package:job_scout_project/features/jobs/data/data_source/remote_datasource/jobs_remote_data_source.dart';
 import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity.dart';
 import 'package:job_scout_project/features/jobs/domain/repository/jobs_repository.dart';
 
@@ -20,7 +19,7 @@ class JobRemoteRepository implements IJobRepository {
     }
   }
 
-  /// *Fetch a specific job by its ID (Remote Call)*
+  /// **Fetch a specific job by its ID (Remote Call)**
   @override
   Future<Either<Failure, JobEntity>> getJobById(String jobId) async {
     try {

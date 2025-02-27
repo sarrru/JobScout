@@ -1,3 +1,27 @@
+
+
+
+// import 'package:job_scout_project/features/company/domain/entity/company_entity.dart';
+
+// class CompanyState {
+//   final bool isLoading;
+//   final String? error;
+//   final List<CompanyEntity> companies;
+
+//   CompanyState({required this.isLoading, this.error, required this.companies});
+
+//   factory CompanyState.initial() {
+//     return CompanyState(isLoading: false, error: null, companies: []);
+//   }
+
+//   CompanyState copyWith({bool? isLoading, String? error, List<CompanyEntity>? companies}) {
+//     return CompanyState(
+//       isLoading: isLoading ?? this.isLoading,
+//       error: error,
+//       companies: companies ?? this.companies,
+//     );
+//   }
+// }
 import 'package:equatable/equatable.dart';
 import 'package:job_scout_project/features/company/domain/entity/company_entity.dart';
 
@@ -14,7 +38,7 @@ class CompanyState extends Equatable {
     this.selectedCompany, // ✅ Add Selected Company for Company By ID
   });
 
-  /// *Initial State*
+  /// **Initial State**
   factory CompanyState.initial() {
     return const CompanyState(
       isLoading: false,
@@ -24,7 +48,7 @@ class CompanyState extends Equatable {
     );
   }
 
-  /// *CopyWith Method to Update State*
+  /// **CopyWith Method to Update State**
   CompanyState copyWith({
     bool? isLoading,
     String? error,

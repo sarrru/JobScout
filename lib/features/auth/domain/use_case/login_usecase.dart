@@ -5,22 +5,23 @@ import 'package:job_scout_project/app/usecase/usecase.dart';
 import 'package:job_scout_project/core/error/failure.dart';
 import 'package:job_scout_project/features/auth/domain/repository/auth_repository.dart';
 
+
 class LoginParams extends Equatable {
-  final String email;
+  final String username;
   final String password;
 
   const LoginParams({
-    required this.email,
+    required this.username,
     required this.password,
   });
 
   // Initial Constructor
   const LoginParams.initial()
-      : email = '',
+      : username = '',
         password = '';
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [username, password];
 }
 
 class LoginUseCase implements UsecaseWithParams<String, LoginParams> {
@@ -31,7 +32,7 @@ class LoginUseCase implements UsecaseWithParams<String, LoginParams> {
 
   @override
   Future<Either<Failure, String>> call(LoginParams params) {
-    return repository.loginUser(params.email, params.password).then((value) {
+    return repository.loginUser(params.username, params.password).then((value) {
       return value.fold(
         (failure) => Left(failure),
         (token) {

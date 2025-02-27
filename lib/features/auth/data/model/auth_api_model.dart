@@ -4,16 +4,14 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'auth_api_model.g.dart';
 
-
 @JsonSerializable()
 class AuthApiModel extends Equatable {
   @JsonKey(name: '_id')
   final String? authId;
   final String email;
   final String? image;
-  @JsonKey(name: 'phoneNumber')
+  @JsonKey(name: 'contact_no')
   final String contactNo;
-  @JsonKey(name: 'fullname')
   final String username;
   final String password;
 

@@ -14,7 +14,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
     on<AddApplication>(_onAddApplication);
   }
 
-  /// *Handles Creating a New Job Application*
+  /// **Handles Creating a New Job Application**
   Future<void> _onAddApplication(
       AddApplication event, Emitter<ApplicationState> emit) async {
     emit(ApplicationAdding());

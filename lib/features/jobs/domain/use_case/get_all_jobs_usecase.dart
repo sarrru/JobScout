@@ -1,26 +1,40 @@
-// // import 'package:dartz/dartz.dart';
-// // import 'package:job_scout_project/app/usecase/usecase.dart';
-// // import 'package:job_scout_project/core/error/failure.dart';
-// // import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity';
-// // import 'package:job_scout_project/features/jobs/domain/repository/jobs_repository.dart';
+// import 'package:dartz/dartz.dart';
+// import 'package:job_scout_project/app/shared_prefs/token_shared_prefs.dart';
+// import 'package:job_scout_project/app/usecase/usecase.dart';
+// import 'package:job_scout_project/core/error/failure.dart';
+// import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity';
+// import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity.dart';
+// import 'package:job_scout_project/features/jobs/domain/repository/jobs_repository.dart';
 
-// // class GetAllJobUseCase implements UsecaseWithoutParams<List<JobEntity>> {
-// //   final IJobRepository jobRepository;
+// /// **Use Case: Get All Jobs**
+// class GetAllJobsUseCase implements UsecaseWithoutParams<List<JobEntity>> {
+//   final IJobRepository jobRepository;
+//   final TokenSharedPrefs tokenSharedPrefs;
 
-// //   GetAllJobUseCase({required this.jobRepository});
+//   GetAllJobsUseCase({
+//     required this.jobRepository,
+//     required this.tokenSharedPrefs,
+//   });
 
-// //   @override
-// //   Future<Either<Failure, List<JobEntity>>> call() {
-// //     return jobRepository.getAllJobs();
-// //   }
-// // }
+//   @override
+//   Future<Either<Failure, List<JobEntity>>> call() async {
+//     final tokenResult = await tokenSharedPrefs.getToken();
 
+//     return tokenResult.fold(
+//       (failure) => Left(failure),
+//       (token) async {
+//         if (token.isEmpty) {
+//           return Left(ApiFailure(message: "Authentication token is missing"));
+//         }
+//         return await jobRepository.getAllJobs(token);
+//       },
+//     );
+//   }
+// }
 import 'package:dartz/dartz.dart';
 import 'package:job_scout_project/app/usecase/usecase.dart';
 import 'package:job_scout_project/core/error/failure.dart';
 import 'package:job_scout_project/features/jobs/data/model/job_api_model.dart';
-
-
 import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity.dart';
 import 'package:job_scout_project/features/jobs/domain/repository/jobs_repository.dart';
 

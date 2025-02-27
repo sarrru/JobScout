@@ -4,7 +4,6 @@ import 'package:job_scout_project/features/application/presentation/view_model/a
 import 'package:job_scout_project/features/application/presentation/view_model/application_event.dart';
 import 'package:job_scout_project/features/application/presentation/view_model/application_state.dart';
 
-
 class AddApplicationView extends StatefulWidget {
   const AddApplicationView({super.key});
 
@@ -67,7 +66,7 @@ class _AddApplicationViewState extends State<AddApplicationView> {
     );
   }
 
-  /// *Builds Text Input Field*
+  /// **Builds Text Input Field**
   Widget _buildTextField(String label, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
@@ -81,7 +80,7 @@ class _AddApplicationViewState extends State<AddApplicationView> {
     );
   }
 
-  /// *Handles Form Submission*
+  /// **Handles Form Submission**
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       context.read<ApplicationBloc>().add(

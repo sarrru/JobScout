@@ -3,7 +3,7 @@
 // import 'package:job_scout_project/app/shared_prefs/token_shared_prefs.dart';
 // import 'package:job_scout_project/app/usecase/usecase.dart';
 // import 'package:job_scout_project/core/error/failure.dart';
-// import 'package:job_scout_project/features/company/domain/entity/company_entity';
+// import 'package:job_scout_project/features/company/domain/entity/company_entity.dart';
 // import 'package:job_scout_project/features/company/domain/repository/company_repository.dart';
 
 // /// **Data Transfer Object (DTO) for Creating a Company**
@@ -83,7 +83,6 @@
 //             userId: params.userId ?? '',
 //             website: params.website,
 //           ),
-//           token, // ✅ Pass token to repository
 //         );
 //       },
 //     );

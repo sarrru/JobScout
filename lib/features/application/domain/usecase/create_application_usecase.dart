@@ -6,7 +6,7 @@ import 'package:job_scout_project/core/error/failure.dart';
 import 'package:job_scout_project/features/application/domain/entity/application_entity.dart';
 import 'package:job_scout_project/features/application/domain/repository/application_repository.dart';
 
-/// *Data Transfer Object (DTO) for Creating an Application*
+/// **Data Transfer Object (DTO) for Creating an Application**
 class CreateApplicationParams extends Equatable {
   final String jobId;
   final String applicantId;
@@ -14,7 +14,7 @@ class CreateApplicationParams extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  /// *Constructor*
+  /// **Constructor**
   const CreateApplicationParams({
     required this.jobId,
     required this.applicantId,
@@ -23,7 +23,7 @@ class CreateApplicationParams extends Equatable {
     this.updatedAt,
   });
 
-  /// *Empty Constructor with Default Values*
+  /// **Empty Constructor with Default Values**
   const CreateApplicationParams.empty()
       : jobId = '',
         applicantId = '',
@@ -35,13 +35,13 @@ class CreateApplicationParams extends Equatable {
   List<Object?> get props => [jobId, applicantId, status, createdAt, updatedAt];
 }
 
-/// *Use Case: Create Application*
+/// **Use Case: Create Application**
 class CreateApplicationUseCase
     implements UsecaseWithParams<void, CreateApplicationParams> {
   final IApplicationRepository applicationRepository;
   final TokenSharedPrefs tokenSharedPrefs; // ✅ Inject Token Shared Prefs
 
-  /// *Constructor*
+  /// **Constructor**
   CreateApplicationUseCase({
     required this.applicationRepository,
     required this.tokenSharedPrefs,

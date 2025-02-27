@@ -2,7 +2,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:job_scout_project/app/constants/hive_table_constant.dart';
 import 'package:job_scout_project/features/auth/data/model/auth_hive_model.dart';
 
-
 import 'package:path_provider/path_provider.dart';
 
 class HiveService {

@@ -26,6 +26,6 @@ class ApiEndpoints {
   static const String createCompany = "company/createCompany";
   static const String createApplication = "application/createApplication";
   static const String getAllCompany = "company/get";
-  static const String getCompanyById = "company/get/:id";
+  static const String getCompanyById = "company/get";
   // ======================== Batch Routes =============================
 }

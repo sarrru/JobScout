@@ -1,3 +1,4 @@
+
 // import 'package:job_scout_project/features/jobs/data/model/job_api_model.dart';
 // import 'package:json_annotation/json_annotation.dart';
 
@@ -9,7 +10,7 @@
 
 //   GetAllJobsDto({required this.jobs});
 
-//   /// *✅ Safe JSON Parsing with Error Handling*
+//   /// **✅ Safe JSON Parsing with Error Handling**
 //   factory GetAllJobsDto.fromJson(Map<String, dynamic> json) {
 //     if (json.isEmpty || !json.containsKey("jobs")) {
 //       throw Exception("Invalid API response: Missing 'jobs' key.");
@@ -20,7 +21,7 @@
 //       List<dynamic>? jobList = json['jobs'];
 
 //       if (jobList == null || jobList.isEmpty) {
-//         print("⚠ Warning: Job list is empty or null");
+//         print("⚠️ Warning: Job list is empty or null");
 //         return GetAllJobsDto(jobs: []);
 //       }
 

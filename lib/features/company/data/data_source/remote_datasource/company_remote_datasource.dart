@@ -31,7 +31,7 @@ class CompanyRemoteDataSource {
     }
   }
 
-  /// *Get Company By ID*
+  /// **Get Company By ID**
   Future<CompanyApiModel> getCompanyById(String companyId) async {
     try {
       final response = await _dio.get("${ApiEndpoints.getCompanyById}/$companyId");
@@ -46,3 +46,4 @@ class CompanyRemoteDataSource {
     }
   }
 }
+

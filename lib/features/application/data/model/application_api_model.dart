@@ -14,7 +14,7 @@ class ApplicationApiModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  /// *Constructor*
+  /// **Constructor**
   const ApplicationApiModel({
     this.applicationId,
     required this.jobId,
@@ -24,7 +24,7 @@ class ApplicationApiModel extends Equatable {
     this.updatedAt,
   });
 
-  /// *Empty Constructor with Default Values*
+  /// **Empty Constructor with Default Values**
   const ApplicationApiModel.empty()
       : applicationId = '',
         jobId = '',
@@ -33,7 +33,7 @@ class ApplicationApiModel extends Equatable {
         createdAt = null,
         updatedAt = null;
 
-  /// **Factory Constructor to Create ApplicationApiModel from JSON**
+  /// **Factory Constructor to Create `ApplicationApiModel` from JSON**
   factory ApplicationApiModel.fromJson(Map<String, dynamic> json) {
     return ApplicationApiModel(
       applicationId: json['_id'] as String?,
@@ -47,7 +47,7 @@ class ApplicationApiModel extends Equatable {
     );
   }
 
-  /// **Method to Convert ApplicationApiModel to JSON**
+  /// **Method to Convert `ApplicationApiModel` to JSON**
   Map<String, dynamic> toJson() {
     return {
       '_id': applicationId,
@@ -59,7 +59,7 @@ class ApplicationApiModel extends Equatable {
     };
   }
 
-  /// *Convert API Object to Domain Entity*
+  /// **Convert API Object to Domain Entity**
   ApplicationEntity toEntity() => ApplicationEntity(
         applicationId: applicationId ?? '',
         jobId: jobId,
@@ -69,7 +69,7 @@ class ApplicationApiModel extends Equatable {
         updatedAt: updatedAt,
       );
 
-  /// *Convert Domain Entity to API Object*
+  /// **Convert Domain Entity to API Object**
   static ApplicationApiModel fromEntity(ApplicationEntity entity) =>
       ApplicationApiModel(
         applicationId: entity.applicationId,
@@ -80,7 +80,7 @@ class ApplicationApiModel extends Equatable {
         updatedAt: entity.updatedAt,
       );
 
-  /// *Convert API List to Entity List*
+  /// **Convert API List to Entity List**
   static List<ApplicationEntity> toEntityList(
           List<ApplicationApiModel> models) =>
       models.map((model) => model.toEntity()).toList();

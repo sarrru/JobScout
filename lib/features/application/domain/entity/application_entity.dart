@@ -8,7 +8,7 @@ class ApplicationEntity extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  /// *Constructor*
+  /// **Constructor**
   const ApplicationEntity({
     required this.applicationId,
     required this.jobId,
@@ -18,7 +18,7 @@ class ApplicationEntity extends Equatable {
     this.updatedAt,
   });
 
-  /// *Empty Constructor with Default Values*
+  /// **Empty Constructor with Default Values**
   const ApplicationEntity.empty()
       : applicationId = 'empty_applicationId',
         jobId = 'empty_jobId',
@@ -27,7 +27,7 @@ class ApplicationEntity extends Equatable {
         createdAt = null,
         updatedAt = null;
 
-  /// **Factory Constructor to Convert JSON to ApplicationEntity**
+  /// **Factory Constructor to Convert JSON to `ApplicationEntity`**
   factory ApplicationEntity.fromJson(Map<String, dynamic> json) {
     return ApplicationEntity(
       applicationId: json['_id'] as String,
@@ -41,7 +41,7 @@ class ApplicationEntity extends Equatable {
     );
   }
 
-  /// **Method to Convert ApplicationEntity to JSON**
+  /// **Method to Convert `ApplicationEntity` to JSON**
   Map<String, dynamic> toJson() {
     return {
       '_id': applicationId,
@@ -53,7 +53,7 @@ class ApplicationEntity extends Equatable {
     };
   }
 
-  /// *CopyWith Method for Immutability*
+  /// **CopyWith Method for Immutability**
   ApplicationEntity copyWith({
     String? applicationId,
     String? jobId,

@@ -1,5 +1,3 @@
-
-
 import 'package:job_scout_project/features/company/domain/entity/company_entity.dart';
 import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -38,7 +36,7 @@ class JobApiModel {
     this.applications, // Nullable applications
   });
 
-  /// *Factory Constructor to Create from JSON*
+  /// **Factory Constructor to Create from JSON**
   factory JobApiModel.fromJson(Map<String, dynamic> json) {
     return JobApiModel(
       jobId: json['_id'] as String? ?? '', // Handle null safely
@@ -64,7 +62,7 @@ class JobApiModel {
     );
   }
 
-  /// *Convert API Model to Domain Entity*
+  /// **Convert API Model to Domain Entity**
   JobEntity toEntity() => JobEntity(
         jobId: jobId,
         title: title,
@@ -81,7 +79,7 @@ class JobApiModel {
       );
   Map<String, dynamic> toJson() => _$JobApiModelToJson(this);
 
-  /// *Convert JSON List to List of JobEntity*
+  /// **Convert JSON List to List of JobEntity**
   static List<JobEntity> toEntityList(List<JobApiModel> jobs) =>
       jobs.map((job) => job.toEntity()).toList();
 }
