@@ -1,9 +1,9 @@
-// import 'package:job_scout_project/features/jobs/data/model/jobs_api_model.dart';
+import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity.dart';
 
-// abstract class IJobRemoteDataSource {
-//   Future<List<JobApiModel>> getAllJobs();
-//   Future<JobApiModel> getJobById(String jobId);
-//   Future<void> createJob(JobApiModel job);
-//   Future<void> updateJob(JobApiModel job);
-//   Future<void> deleteJob(String jobId);
-// }
+abstract interface class IJobDataSource {
+  /// *Fetch all jobs from the remote API*
+  Future<List<JobEntity>> getAllJobs();
+
+  /// *Fetch a single job by ID*
+  Future<JobEntity> getJobById(String jobId);
+}

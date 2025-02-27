@@ -1,35 +1,42 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity';
+part of 'job_bloc.dart';
 
-// abstract class JobState extends Equatable {
-//   const JobState();
 
-//   @override
-//   List<Object?> get props => [];
-// }
+class JobState extends Equatable {
+  final List<JobEntity> jobs;
+  final bool isLoading;
+  final String? error;
+  final JobEntity? selectedJob;
 
-// /// **Initial State**
-// class JobInitialState extends JobState {}
+  const JobState({
+    required this.jobs,
+    required this.isLoading,
+    this.error,
+    this.selectedJob,
+  });
 
-// /// **Loading State**
-// class JobLoadingState extends JobState {}
+  factory JobState.initial() {
+    return const JobState(
+      jobs: [],
+      isLoading: false,
+      error: null,
+      selectedJob: null,
+    );
+  }
 
-// /// **Loaded State with List of Jobs**
-// class JobLoadedState extends JobState {
-//   final List<JobEntity> jobs;
+  JobState copyWith({
+    List<JobEntity>? jobs,
+    bool? isLoading,
+    String? error,
+    JobEntity? selectedJob,
+  }) {
+    return JobState(
+      jobs: jobs ?? this.jobs,
+      isLoading: isLoading ?? this.isLoading,
+      error: error,
+      selectedJob: selectedJob ?? this.selectedJob,
+    );
+  }
 
-//   const JobLoadedState({required this.jobs});
-
-//   @override
-//   List<Object?> get props => [jobs];
-// }
-
-// /// **Error State**
-// class JobErrorState extends JobState {
-//   final String message;
-
-//   const JobErrorState({required this.message});
-
-//   @override
-//   List<Object?> get props => [message];
-// }
+  @override
+  List<Object?> get props => [jobs, isLoading, error];
+}

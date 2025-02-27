@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
           create: (_) => getIt<RegisterBloc>(),
         ),
         // BlocProvider<CompanyBloc>(
-        //   create: (_) => getIt<CompanyBloc>(),
+        //   create: (_) =>
+        //       getIt<CompanyBloc>(), //app.dart ma call garna parcha bloc lai
         // ),
       ],
       child: MaterialApp(

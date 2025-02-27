@@ -7,6 +7,7 @@ import 'package:job_scout_project/features/auth/presentation/view_model/signup/r
 import 'package:job_scout_project/features/home/presentation/view/home_view.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
 
+
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -48,17 +49,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
 
     on<LoginUserEvent>(
-      (event, emit) async {
+          (event, emit) async {
         emit(state.copyWith(isLoading: true));
         final result = await _loginUseCase(
           LoginParams(
-            email: event.email,
+            email: event.username,
             password: event.password,
           ),
         );
 
         result.fold(
-          (l) {
+              (l) {
             emit(state.copyWith(isLoading: false, isSuccess: false));
             mySnackBar(
               context: event.context,
@@ -66,7 +67,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               color: Colors.red,
             );
           },
-          (token) {
+              (token) {
             emit(state.copyWith(isLoading: false, isSuccess: true));
 
             // Show success snack bar

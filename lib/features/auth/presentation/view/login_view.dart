@@ -45,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
     if (_formKey.currentState!.validate()) {
       context.read<LoginBloc>().add(
             LoginUserEvent(
-              email: _usernameController.text.trim(),
+              username: _usernameController.text.trim(),
               password: _passwordController.text.trim(),
               context: context, // Ensure this is passed for snackbar messages
             ),

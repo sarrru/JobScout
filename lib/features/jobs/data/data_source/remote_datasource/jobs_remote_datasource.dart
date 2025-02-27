@@ -1,96 +1,52 @@
-// import 'package:dio/dio.dart';
-// import 'package:job_scout_project/features/jobs/data/data_source/jobs_data_source.dart';
-// import 'package:job_scout_project/features/jobs/data/model/jobs_api_model.dart';
+import 'package:dio/dio.dart';
+import 'package:job_scout_project/app/constants/api_endpoints.dart';
+import 'package:job_scout_project/features/jobs/data/data_source/jobs_data_source.dart';
+import 'package:job_scout_project/features/jobs/data/dto/get_all_job_dto.dart';
+import 'package:job_scout_project/features/jobs/data/model/job_api_model.dart';
+import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity.dart';
+import 'package:job_scout_project/features/jobs/domain/use_case/get_all_jobs_usecase.dart';
 
-// class JobRemoteDataSourceImpl implements IJobRemoteDataSource {
-//   final Dio dio;
-//   final String baseUrl;
+class JobsRemoteDataSource implements IJobDataSource {
+  final Dio _dio;
 
-//   JobRemoteDataSourceImpl({required this.dio, required this.baseUrl});
+  JobsRemoteDataSource(
+    Dio dio,
+  ) : _dio = dio;
 
-//   /// **Fetch All Jobs**
-//   @override
-//   Future<List<JobApiModel>> getAllJobs() async {
-//     try {
-//       final response = await dio.get('$baseUrl/job/get');
+  @override
+  Future<List<JobEntity>> getAllJobs() async {
+    try {
+      var response = await _dio.get(ApiEndpoints.getAllJobs);
+      if (response.statusCode == 200) {
+        GetAllJobs job = GetAllJobsDto.fromJson(response.data) as GetAllJobs;
+        return JobApiModel.toEntityList(job.data);
+      } else {
+        throw Exception("Failed to fetch movies: ${response.statusMessage}");
+      }
+    } on DioException catch (e) {
+      throw Exception(
+          e.response?.statusMessage ?? e.message ?? "Unknown Dio error");
+    } catch (e) {
+      throw Exception("Unexpected error: ${e.toString()}");
+    }
+  }
 
-//       if (response.statusCode == 200 && response.data != null) {
-//         final List<dynamic> jsonData = response.data;
-//         return jsonData.map((e) => JobApiModel.fromJson(e)).toList();
-//       } else {
-//         throw Exception('Failed to load jobs: ${response.statusCode}');
-//       }
-//     } on DioException catch (e) {
-//       throw Exception(
-//           "Dio Error: ${e.response?.statusCode ?? 'Unknown'} - ${e.message}");
-//     }
-//   }
-
-//   /// **Fetch a Single Job by ID**
-//   @override
-//   Future<JobApiModel> getJobById(String jobId) async {
-//     try {
-//       final response = await dio.get('$baseUrl/job/$jobId');
-
-//       if (response.statusCode == 200 && response.data != null) {
-//         return JobApiModel.fromJson(response.data);
-//       } else {
-//         throw Exception('Failed to load job: ${response.statusCode}');
-//       }
-//     } on DioException catch (e) {
-//       throw Exception(
-//           "Dio Error: ${e.response?.statusCode ?? 'Unknown'} - ${e.message}");
-//     }
-//   }
-
-//   /// **Create a New Job**
-//   @override
-//   Future<void> createJob(JobApiModel job) async {
-//     try {
-//       final response = await dio.post(
-//         '$baseUrl/job/create',
-//         data: job.toJson(),
-//       );
-
-//       if (response.statusCode != 201) {
-//         throw Exception('Failed to create job: ${response.statusCode}');
-//       }
-//     } on DioException catch (e) {
-//       throw Exception(
-//           "Dio Error: ${e.response?.statusCode ?? 'Unknown'} - ${e.message}");
-//     }
-//   }
-
-//   /// **Update an Existing Job**
-//   @override
-//   Future<void> updateJob(JobApiModel job) async {
-//     try {
-//       final response = await dio.put(
-//         '$baseUrl/job/update/${job.jobId}',
-//         data: job.toJson(),
-//       );
-
-//       if (response.statusCode != 200) {
-//         throw Exception('Failed to update job: ${response.statusCode}');
-//       }
-//     } on DioException catch (e) {
-//       throw Exception(
-//           "Dio Error: ${e.response?.statusCode ?? 'Unknown'} - ${e.message}");
-//     }
-//   }
-
-//   /// **Delete a Job**
-//   @override
-//   Future<void> deleteJob(String jobId) async {
-//     try {
-//       final response = await dio.delete('$baseUrl/job/delete/$jobId');
-
-//       if (response.statusCode != 200) {
-//         throw Exception('Failed to delete job: ${response.statusCode}');
-//       }
-//     } on DioException catch (e) {
-//       throw Exception(
-//           "Dio Error: ${e.response?.statusCode ?? 'Unknown'} - ${e.message}");
-//     }
-//   }
-// }
+  @override
+  Future<JobEntity> getJobById(String jobId) async {
+    try {
+      var response = await _dio.get("${ApiEndpoints.getJobById}/$jobId");
+      if (response.statusCode == 200) {
+        JobApiModel movieApiModel = JobApiModel.fromJson(response.data);
+        return movieApiModel.toEntity();
+      } else {
+        throw Exception(
+            "Failed to fetch movie details: ${response.statusMessage}");
+      }
+    } on DioException catch (e) {
+      throw Exception(
+          e.response?.statusMessage ?? e.message ?? "Unknown Dio error");
+    } catch (e) {
+      throw Exception("Unexpected error: ${e.toString()}");
+    }
+  }
+}

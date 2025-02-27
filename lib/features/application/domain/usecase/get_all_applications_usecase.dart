@@ -1,14 +1,14 @@
-import 'package:dartz/dartz.dart';
-import 'package:job_scout_project/core/error/failure.dart';
-import 'package:job_scout_project/features/application/domain/entity/application_entity';
-import 'package:job_scout_project/features/application/domain/repository/application_repository.dart';
+// import 'package:dartz/dartz.dart';
+// import 'package:job_scout_project/core/error/failure.dart';
+// import 'package:job_scout_project/features/application/domain/entity/application_entity';
+// import 'package:job_scout_project/features/application/domain/repository/application_repository.dart';
 
-class GetAllApplicationsUseCase {
-  final IApplicationRepository applicationRepository;
+// class GetAllApplicationsUseCase {
+//   final IApplicationRepository applicationRepository;
 
-  GetAllApplicationsUseCase(this.applicationRepository);
+//   GetAllApplicationsUseCase(this.applicationRepository);
 
-  Future<Either<Failure, List<ApplicationEntity>>> call() {
-    return applicationRepository.getAllApplications();
-  }
-}
+//   Future<Either<Failure, List<ApplicationEntity>>> call() {
+//     return applicationRepository.getAllApplications();
+//   }
+// }

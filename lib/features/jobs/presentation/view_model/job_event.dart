@@ -1,42 +1,30 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:job_scout_project/features/jobs/domain/entity/jobs_entity';
+part of 'job_bloc.dart';
 
-// abstract class JobEvent extends Equatable {
-//   const JobEvent();
 
-//   @override
-//   List<Object?> get props => [];
-// }
 
-// /// **Load All Jobs**
-// class LoadJobsEvent extends JobEvent {}
+abstract class JobEvent extends Equatable {
+  const JobEvent();
 
-// /// **Create a New Job**
-// class CreateJobEvent extends JobEvent {
-//   final JobEntity job;
+  @override
+  List<Object?> get props => [];
+}
 
-//   const CreateJobEvent({required this.job});
+class LoadJobs extends JobEvent {}
 
-//   @override
-//   List<Object?> get props => [job];
-// }
+class LoadJobDetails extends JobEvent {
+  final String jobId;
 
-// /// **Update Existing Job**
-// class UpdateJobEvent extends JobEvent {
-//   final JobEntity job;
+  const LoadJobDetails({required this.jobId});
 
-//   const UpdateJobEvent({required this.job});
+  @override
+  List<Object?> get props => [jobId];
+}
 
-//   @override
-//   List<Object?> get props => [job];
-// }
+class SelectJob extends JobEvent {
+  final JobEntity job;
 
-// /// **Delete a Job**
-// class DeleteJobEvent extends JobEvent {
-//   final String jobId;
+  const SelectJob({required this.job});
 
-//   const DeleteJobEvent({required this.jobId});
-
-//   @override
-//   List<Object?> get props => [jobId];
-// }
+  @override
+  List<Object?> get props => [job];
+}

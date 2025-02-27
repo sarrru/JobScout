@@ -1,140 +1,9 @@
-// import 'package:dio/dio.dart';
-// import 'package:get_it/get_it.dart';
-// import 'package:job_scout_project/app/shared_prefs/token_shared_prefs.dart';
-// import 'package:job_scout_project/core/network/api_service.dart';
-// import 'package:job_scout_project/core/network/hive_service.dart';
-// import 'package:job_scout_project/features/auth/data/data_source/local_datasource/auth_local_datasource.dart';
-// import 'package:job_scout_project/features/auth/data/data_source/remote_datasource/auth_remote_datasource.dart';
-// import 'package:job_scout_project/features/auth/data/repository/auth_local_repository/auth_local_repository.dart';
-// import 'package:job_scout_project/features/auth/data/repository/auth_remote_repository.dart/auth_remote_repository.dart';
-// import 'package:job_scout_project/features/auth/domain/use_case/login_usecase.dart';
-// import 'package:job_scout_project/features/auth/domain/use_case/register_user_usecase.dart';
-// import 'package:job_scout_project/features/auth/domain/use_case/upload_image_usecase.dart';
-// import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
-// import 'package:job_scout_project/features/auth/presentation/view_model/signup/register_bloc.dart';
-// import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
-// import 'package:job_scout_project/features/splash/presentation/view_model/on_boarding/on_boarding_cubit.dart';
-// import 'package:job_scout_project/features/splash/presentation/view_model/splash_cubit.dart';
-
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// final getIt = GetIt.instance;
-
-// Future<void> initDependencies() async {
-//   await _initHiveService();
-//   await _initApiService();
-//   await _initSharedPreferences();
-//   _initHomeDependencies();
-//   _initRegisterDependencies();
-//   _initLoginDependencies();
-//   _initSplashScreenDependencies();
-//   _initOnboardingScreenDependencies();
-// }
-
-// Future<void> _initSharedPreferences() async {
-//   final sharedPreferences = await SharedPreferences.getInstance();
-//   getIt.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
-// }
-
-// _initApiService() {
-//   //Remote Data Source
-//   getIt.registerLazySingleton<Dio>(() => ApiService(Dio()).dio);
-// }
-
-// _initHiveService() {
-//   getIt.registerLazySingleton<HiveService>(() => HiveService());
-// }
-
-// void _initOnboardingScreenDependencies() {
-//   getIt.registerFactory<OnboardingCubit>(
-//     () => OnboardingCubit(getIt<LoginBloc>()),
-//   );
-// }
-
-// /// ====================  Register ===================
-
-// _initRegisterDependencies() {
-//   //DataSource
-
-//   getIt.registerLazySingleton<AuthLocalDataSource>(
-//     () => AuthLocalDataSource(getIt<HiveService>()),
-//   );
-
-//   getIt.registerLazySingleton<AuthRemoteDatasource>(
-//     () => AuthRemoteDatasource(getIt<Dio>()),
-//   );
-
-//   //Repository
-
-//   getIt.registerLazySingleton(
-//     () => AuthLocalRepository(getIt<AuthLocalDataSource>()),
-//   );
-//   getIt.registerLazySingleton<AuthRemoteRepository>(
-//     () => AuthRemoteRepository(getIt<AuthRemoteDatasource>()),
-//   );
-
-//   //UseCase
-//   getIt.registerLazySingleton<RegisterUseCase>(
-//     () => RegisterUseCase(
-//       getIt<AuthRemoteRepository>(),
-//     ),
-//   );
-
-//   getIt.registerLazySingleton<UploadImageUsecase>(
-//     () => UploadImageUsecase(
-//       getIt<AuthRemoteRepository>(),
-//     ),
-//   );
-
-//   getIt.registerFactory<RegisterBloc>(
-//     () => RegisterBloc(
-//       registerUseCase: getIt(),
-//       uploadImageUsecase: getIt(),
-//     ),
-//   );
-// }
-
-// // ================================ Home ==========================
-
-// void _initHomeDependencies() {
-//   getIt.registerFactory<HomeCubit>(
-//     () => HomeCubit(),
-//   );
-// }
-
-// // =============================Login ============================
-
-// _initLoginDependencies() async {
-//   //Token Shared Preferences
-//   getIt.registerLazySingleton<TokenSharedPrefs>(
-//     () => TokenSharedPrefs(getIt<SharedPreferences>()),
-//   );
-
-//   //UseCase
-
-//   getIt.registerLazySingleton<LoginUseCase>(() =>
-//       LoginUseCase(getIt<TokenSharedPrefs>(), getIt<AuthRemoteRepository>()));
-
-//   getIt.registerFactory<LoginBloc>(
-//     () => LoginBloc(
-//       registerBloc: getIt<RegisterBloc>(),
-//       homeCubit: getIt<HomeCubit>(),
-//       loginUseCase: getIt<LoginUseCase>(),
-//     ),
-//   );
-// }
-
-// void _initSplashScreenDependencies() {
-//   getIt.registerFactory<SplashCubit>(
-//     () => SplashCubit(getIt<LoginBloc>()),
-//   );
-// }
-
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:job_scout_project/app/shared_prefs/token_shared_prefs.dart';
 import 'package:job_scout_project/core/network/api_service.dart';
 import 'package:job_scout_project/core/network/hive_service.dart';
+// Authentication
 import 'package:job_scout_project/features/auth/data/data_source/local_datasource/auth_local_datasource.dart';
 import 'package:job_scout_project/features/auth/data/data_source/remote_datasource/auth_remote_datasource.dart';
 import 'package:job_scout_project/features/auth/data/repository/auth_local_repository/auth_local_repository.dart';
@@ -144,7 +13,21 @@ import 'package:job_scout_project/features/auth/domain/use_case/register_user_us
 import 'package:job_scout_project/features/auth/domain/use_case/upload_image_usecase.dart';
 import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
 import 'package:job_scout_project/features/auth/presentation/view_model/signup/register_bloc.dart';
+// Company
+import 'package:job_scout_project/features/company/data/data_source/remote_datasource/company_remote_datasource.dart';
+import 'package:job_scout_project/features/company/data/repository/company_remote_repository.dart';
+import 'package:job_scout_project/features/company/domain/repository/company_repository.dart';
+import 'package:job_scout_project/features/company/domain/usecase/get_all_company_usecase.dart';
+import 'package:job_scout_project/features/company/domain/usecase/get_company_by_id_usecase.dart';
+import 'package:job_scout_project/features/company/presentation/view_model/company_bloc.dart';
+// Home & Splash
 import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
+// Jobs
+import 'package:job_scout_project/features/jobs/data/data_source/remote_datasource/jobs_remote_datasource.dart';
+import 'package:job_scout_project/features/jobs/data/repository/jobs_remote_repository.dart';
+import 'package:job_scout_project/features/jobs/domain/use_case/get_all_jobs_usecase.dart';
+import 'package:job_scout_project/features/jobs/domain/use_case/get_job_by_id_usecase.dart';
+import 'package:job_scout_project/features/jobs/presentation/view_model/job_bloc.dart';
 import 'package:job_scout_project/features/splash/presentation/view_model/on_boarding/on_boarding_cubit.dart';
 import 'package:job_scout_project/features/splash/presentation/view_model/splash_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -157,9 +40,10 @@ Future<void> initDependencies() async {
   _initHiveService();
   _initApiService();
 
+  _initJobDependencies();
   _initAuthDependencies();
   _initHomeDependencies();
-  // _initCompanyDependencies();
+  _initCompanyDependencies();
   _initLoginDependencies();
   _initSplashScreenDependencies();
   _initOnboardingScreenDependencies();
@@ -173,9 +57,11 @@ Future<void> _initSharedPreferences() async {
       () => TokenSharedPrefs(sharedPreferences));
 }
 
-/// **Initialize API Service**
+/// **Initialize API Service (Dio)**
 void _initApiService() {
-  getIt.registerLazySingleton<Dio>(() => ApiService(Dio()).dio);
+  if (!getIt.isRegistered<Dio>()) {
+    getIt.registerLazySingleton<Dio>(() => ApiService(Dio()).dio);
+  }
 }
 
 /// **Initialize Hive Service for Local Storage**
@@ -185,25 +71,21 @@ void _initHiveService() {
 
 /// **Initialize Authentication Dependencies**
 void _initAuthDependencies() {
-  // Data Sources
   getIt.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSource(getIt<HiveService>()));
   getIt.registerLazySingleton<AuthRemoteDatasource>(
       () => AuthRemoteDatasource(getIt<Dio>()));
 
-  // Repositories
   getIt.registerLazySingleton<AuthLocalRepository>(
       () => AuthLocalRepository(getIt<AuthLocalDataSource>()));
   getIt.registerLazySingleton<AuthRemoteRepository>(
       () => AuthRemoteRepository(getIt<AuthRemoteDatasource>()));
 
-  // Use Cases
   getIt.registerLazySingleton<RegisterUseCase>(
       () => RegisterUseCase(getIt<AuthRemoteRepository>()));
   getIt.registerLazySingleton<UploadImageUsecase>(
       () => UploadImageUsecase(getIt<AuthRemoteRepository>()));
 
-  // Blocs
   getIt.registerFactory<RegisterBloc>(() => RegisterBloc(
         registerUseCase: getIt(),
         uploadImageUsecase: getIt(),
@@ -227,31 +109,66 @@ void _initLoginDependencies() {
       ));
 }
 
-// /// **Initialize Company Dependencies**
-// void _initCompanyDependencies() {
-//   // ✅ Register Data Sources
-//   getIt.registerLazySingleton<CompanyRemoteDataSource>(
-//       () => CompanyRemoteDataSource(getIt<Dio>()));
+/// **Initialize Company Dependencies**
+void _initCompanyDependencies() {
+  // ✅ Ensure that Dio is already registered before using it
+  if (!getIt.isRegistered<Dio>()) {
+    throw Exception(
+        "Dio must be registered before calling _initCompanyDependencies()");
+  }
 
-//   // ✅ Register Repository as ICompanyRepository
-//   getIt.registerLazySingleton<ICompanyRepository>(
-//       () => CompanyRemoteRepository(getIt<CompanyRemoteDataSource>()));
+  // Data Source
+  getIt.registerLazySingleton<CompanyRemoteDataSource>(
+    () => CompanyRemoteDataSource(getIt<Dio>()),
+  );
 
-//   // ✅ Register Use Cases
-//   getIt.registerLazySingleton<CreateCompanyUseCase>(() => CreateCompanyUseCase(
-//         companyRepository: getIt<ICompanyRepository>(), // Correct Dependency
-//         tokenSharedPrefs: getIt<TokenSharedPrefs>(),
-//       ));
+  // Repository
+  getIt.registerLazySingleton<ICompanyRepository>(
+    () => CompanyRemoteRepository(getIt<CompanyRemoteDataSource>()),
+  );
 
-//   // getIt.registerLazySingleton<GetAllCompaniesUseCase>(
-//   //     () => GetAllCompaniesUseCase(getIt<ICompanyRepository>()));
+  // UseCases
+  getIt.registerLazySingleton<GetAllCompany>(
+    () => GetAllCompany(getIt<ICompanyRepository>()),
+  );
 
-//   // ✅ Register Company Bloc
-//   getIt.registerFactory<CompanyBloc>(() => CompanyBloc(
-//         createCompanyUseCase: getIt<CreateCompanyUseCase>(),
-//         // getAllCompaniesUseCase: getIt<GetAllCompaniesUseCase>(),
-//       ));
-// }
+  getIt.registerLazySingleton<GetCompanyById>(
+    () => GetCompanyById(getIt<ICompanyRepository>()),
+  );
+
+  // Bloc
+  getIt.registerFactory<CompanyBloc>(
+    () => CompanyBloc(
+      getAllCompany: getIt<GetAllCompany>(),
+      getCompanyById: getIt<GetCompanyById>(),
+    ),
+  );
+}
+
+/// **Initialize Job Dependencies**
+void _initJobDependencies() {
+  getIt.registerLazySingleton<JobsRemoteDataSource>(
+    () => JobsRemoteDataSource(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<JobRemoteRepository>(
+    () => JobRemoteRepository(getIt<JobsRemoteDataSource>()),
+  );
+
+  getIt.registerLazySingleton<GetAllJobs>(
+    () => GetAllJobs(getIt<JobRemoteRepository>()),
+  );
+  getIt.registerLazySingleton<GetJobById>(
+    () => GetJobById(getIt<JobRemoteRepository>()),
+  );
+
+  getIt.registerFactory<JobBloc>(
+    () => JobBloc(
+      getAllJobs: getIt<GetAllJobs>(),
+      getJobById: getIt<GetJobById>(),
+    ),
+  );
+}
 
 /// **Initialize Splash Screen Dependencies**
 void _initSplashScreenDependencies() {
