@@ -6,6 +6,7 @@ import 'package:job_scout_project/features/auth/presentation/view/login_view.dar
 import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
 import 'package:job_scout_project/features/company/presentation/view_model/company_bloc.dart';
 import 'package:job_scout_project/features/home/presentation/view/bottom_view/dashboard_view.dart';
+import 'package:job_scout_project/features/home/presentation/view/bottom_view/profile.dart';
 import 'package:job_scout_project/features/jobs/presentation/view/job_view.dart';
 import 'package:job_scout_project/features/jobs/presentation/view_model/job_bloc.dart';
 
@@ -36,12 +37,10 @@ class HomeState extends Equatable {
           create: (context) => getIt<LoginBloc>(),
           child: const LoginView(),
         ),
-        const Center(
-          child: Text('Jobs'),
-        ),
-        const Center(
-          child: Text('Profile'),
-        ),
+        // const Center(
+        //   child: Text('Jobs'),
+        // ),
+        const ProfileScreen(),
       ],
     );
   }
