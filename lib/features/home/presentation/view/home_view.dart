@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:job_scout_project/features/auth/presentation/view/login_view.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_state.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -11,16 +15,55 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeViewState extends State<HomeView> {
+  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
+  DateTime? _lastTapTime;
+
+  @override
+  void initState() {
+    super.initState();
+    _listenToAccelerometer();
+  }
+
+  void _listenToAccelerometer() {
+    _accelerometerSubscription =
+        accelerometerEvents.listen((AccelerometerEvent event) {
+      if (_isDoubleTapOnBack(event)) {
+        _logout();
+      }
+    });
+  }
+
+  bool _isDoubleTapOnBack(AccelerometerEvent event) {
+    const double threshold = 15; // Sensitivity for back tap
+    final DateTime now = DateTime.now();
+
+    if (event.z > threshold) {
+      // Detects strong tap on back
+      if (_lastTapTime != null &&
+          now.difference(_lastTapTime!) < const Duration(seconds: 1)) {
+        return true; // Double tap detected
+      }
+      _lastTapTime = now;
+    }
+    return false;
+  }
+
+  void _logout() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginView()),
+    );
+  }
+
+  @override
+  void dispose() {
+    _accelerometerSubscription?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: BlocBuilder<HomeCubit, HomeState>(
-      //   builder: (context, state) {
-      //     // return state.selectedIndex == 0
-      //     // ? const AddCompanyView() // Show DashboardView when the first tab is selected
-      //     // : Container(); // Show other views as needed
-      //   },
-      // ),
       body: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
         return state.views.elementAt(state.selectedIndex);
       }),
