@@ -81,7 +81,7 @@ class HomeViewState extends State<HomeView> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.book),
-                label: 'Jobs',
+                label: 'login',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
