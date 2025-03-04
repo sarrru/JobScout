@@ -190,18 +190,18 @@ class _CompanyListViewState extends State<CompanyListView> {
                           ),
 
                           // Apply Button
-                          ElevatedButton(
-                            onPressed: () {
-                              // Handle Job Apply Click
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: const Text("Apply"),
-                          ),
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     // Handle Job Apply Click
+                          //   },
+                          //   style: ElevatedButton.styleFrom(
+                          //     backgroundColor: Colors.deepPurple,
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(8),
+                          //     ),
+                          //   ),
+                          //   child: const Text("Apply"),
+                          // ),
                         ],
                       ),
                     ),
