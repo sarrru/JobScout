@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:job_scout_project/core/common/snackbar/my_snackbar.dart';
+import 'package:job_scout_project/core/theme/theme_cubit.dart';
 import 'package:job_scout_project/features/auth/presentation/view/login_view.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_cubit.dart';
 import 'package:job_scout_project/features/home/presentation/view_model/home_state.dart';
@@ -64,6 +66,29 @@ class HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              mySnackBar(
+                context: context,
+                message: 'Logging out...',
+                color: Colors.red,
+              );
+              context.read<HomeCubit>().logout(context);
+            },
+          ),
+          BlocBuilder<ThemeCubit, bool>(
+            builder: (context, isDarkMode) {
+              return Switch(
+                value: isDarkMode,
+                onChanged: (value) {
+                  context.read<ThemeCubit>().toggleTheme();
+                },
+              );
+            },
+          ),
+        ],),
       body: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
         return state.views.elementAt(state.selectedIndex);
       }),
@@ -79,10 +104,10 @@ class HomeViewState extends State<HomeView> {
                 icon: Icon(Icons.group),
                 label: 'Jobs',
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.book),
-                label: 'login',
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.book),
+              //   label: 'login',
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
                 label: 'Profile',

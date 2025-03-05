@@ -3,17 +3,19 @@ import 'package:job_scout_project/features/auth/domain/entity/auth_entity';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'auth_api_model.g.dart';
+// dart run build_runner build -d
 
 @JsonSerializable()
 class AuthApiModel extends Equatable {
   @JsonKey(name: '_id')
   final String? authId;
-  final String email;
-  final String? image;
-  @JsonKey(name: 'contact_no')
-  final String contactNo;
+  @JsonKey(name: 'fullname')
   final String username;
+  final String email;
+  @JsonKey(name: 'phoneNumber')
+  final String contactNo;
   final String password;
+  final String? image;
 
   const AuthApiModel({
     this.authId,

@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_scout_project/app/di/di.dart';
-import 'package:job_scout_project/features/auth/presentation/view/login_view.dart';
 import 'package:job_scout_project/features/auth/presentation/view_model/login/login_bloc.dart';
 import 'package:job_scout_project/features/company/presentation/view_model/company_bloc.dart';
 import 'package:job_scout_project/features/home/presentation/view/bottom_view/dashboard_view.dart';
@@ -35,12 +34,11 @@ class HomeState extends Equatable {
         ),
         BlocProvider(
           create: (context) => getIt<LoginBloc>(),
-          child: const LoginView(),
+          child: const ProfileScreen(),
         ),
         // const Center(
         //   child: Text('Jobs'),
         // ),
-        const ProfileScreen(),
       ],
     );
   }

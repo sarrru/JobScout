@@ -15,17 +15,17 @@
 //   setUp(() {
 //     repository = MockAuthRepository();
 //     tokenSharedPrefs = MockTokenSharedPrefs();
-//     useCase = LoginUseCase(tokenSharedPrefs, repository);
+//     useCase = LoginUseCase(tokenSharedPrefs, repository, authRepository: null);
 
 //     // Register fallback values for mocked objects
-//     registerFallbackValue(LoginParams(username: 'test', password: 'test123'));
+//     registerFallbackValue(LoginParams(username: 'test', password: 'test123', email: ''));
 //   });
 
 //   test('should return a token when login is successful', () async {
 //     const username = 'testUser';
 //     const password = 'testPass';
 //     const token = 'mock_token';
-//     final loginParams = LoginParams(username: username, password: password);
+//     final loginParams = LoginParams(username: username, password: password, email: '');
 
 //     when(() => repository.loginUser(any(), any()))
 //         .thenAnswer((_) async => Right(token));
@@ -48,7 +48,7 @@
 //   test('should return a failure when login fails', () async {
 //     const username = 'wrongUser';
 //     const password = 'wrongPass';
-//     final loginParams = LoginParams(username: username, password: password);
+//     final loginParams = LoginParams(username: username, password: password, email: '');
 
 //     when(() => repository.loginUser(any(), any()))
 //         .thenAnswer((_) async => Left(ApiFailure(message: "Invalid login")));

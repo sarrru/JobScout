@@ -9,8 +9,6 @@ import 'package:job_scout_project/features/jobs/presentation/view_model/job_bloc
 import 'package:job_scout_project/features/splash/presentation/view/splash_view.dart';
 import 'package:job_scout_project/features/splash/presentation/view_model/on_boarding/on_boarding_cubit.dart';
 import 'package:job_scout_project/features/splash/presentation/view_model/splash_cubit.dart';
-
-import '../features/company/data/repository/company_remote_repository.dart';
 import 'di/di.dart';
 
 class MyApp extends StatelessWidget {
@@ -44,8 +42,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Movie Ticket Booking',
-        // theme: get.getApplicationTheme(isDarkMode: false),
+        title: 'JobScout',
         theme: ThemeData(),
         home: const SplashView(),
       ),
