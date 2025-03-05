@@ -75,7 +75,7 @@ class JobApiModel {
         position: position,
         company: company,
         createdBy: createdBy,
-        applications: applications ?? [],
+        applications: applications ?? [], companyId: '',
       );
   Map<String, dynamic> toJson() => _$JobApiModelToJson(this);
 

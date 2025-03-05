@@ -28,7 +28,7 @@ class JobEntity extends Equatable {
     required this.position,
     required this.company,
     required this.createdBy,
-    required this.applications,
+    required this.applications, required String companyId,
   });
 
   /// **Empty Constructor with Default Values**
@@ -66,7 +66,7 @@ class JobEntity extends Equatable {
       createdBy: json['created_by'] as String,
       applications: json['applications'] != null
           ? List<String>.from(json['applications'])
-          : [],
+          : [], companyId: '',
     );
   }
 
@@ -115,7 +115,7 @@ class JobEntity extends Equatable {
       position: position ?? this.position,
       company: company ?? this.company,
       createdBy: createdBy ?? this.createdBy,
-      applications: applications ?? this.applications,
+      applications: applications ?? this.applications, companyId: '',
     );
   }
 

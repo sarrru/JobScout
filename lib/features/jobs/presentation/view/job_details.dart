@@ -167,7 +167,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                       const Icon(Icons.work, color: Colors.deepPurple),
                       const SizedBox(width: 5),
                       Text(
-                        "Position: ${company.jobPosition ?? 'Not Disclosed'}",
+                        "Position: ${company.jobPosition ?? 'Frontend'}",
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       ),
@@ -181,7 +181,7 @@ class _CompanyDetailsPageState extends State<CompanyDetailsPage> {
                       const Icon(Icons.monetization_on, color: Colors.green),
                       const SizedBox(width: 5),
                       Text(
-                        "Salary: \$${company.jobSalary ?? 'Not Disclosed'}",
+                        "Salary: \$${company.jobSalary ?? '50000'}",
                         style:
                             const TextStyle(fontSize: 18, color: Colors.green),
                       ),

@@ -28,7 +28,7 @@ class LoginUseCase implements UsecaseWithParams<String, LoginParams> {
   final IAuthRepository repository;
   final TokenSharedPrefs tokenSharedPrefs;
 
-  const LoginUseCase(this.tokenSharedPrefs, this.repository);
+  const LoginUseCase(this.tokenSharedPrefs, this.repository, {required authRepository});
 
   @override
   Future<Either<Failure, String>> call(LoginParams params) {

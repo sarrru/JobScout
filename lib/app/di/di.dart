@@ -235,7 +235,7 @@ void _initHomeDependencies() {
 /// **Initialize Login Dependencies**
 void _initLoginDependencies() {
   getIt.registerLazySingleton<LoginUseCase>(() =>
-      LoginUseCase(getIt<TokenSharedPrefs>(), getIt<AuthRemoteRepository>()));
+      LoginUseCase(getIt<TokenSharedPrefs>(), getIt<AuthRemoteRepository>(), authRepository: null));
 
   getIt.registerFactory<LoginBloc>(() => LoginBloc(
         registerBloc: getIt<RegisterBloc>(),

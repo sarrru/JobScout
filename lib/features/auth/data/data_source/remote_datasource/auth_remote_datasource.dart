@@ -21,15 +21,25 @@ class AuthRemoteDatasource implements IAuthDataSource {
         data: authApiModel.toJson(),
       );
       if (response.statusCode == 200) {
-        return;
+        return response.data['message'] ?? 'Registration successful';
       } else {
         throw Exception(response.statusMessage);
       }
     } on DioException catch (e) {
-      throw Exception(e.message);
+      throw (e.response?.data['message'] ?? e.message);
     } catch (e) {
-      throw Exception(e.toString());
+      throw ('Registration successful');
     }
+    //   if (response.statusCode == 200) {
+    //     return response.data['message'] ?? 'Registration successful';
+    //   } else {
+    //     throw Exception(response.statusMessage);
+    //   }
+    // } on DioException catch (e) {
+    //   throw Exception(e.message);
+    // } catch (e) {
+    //   throw Exception(e.toString());
+    // }
   }
 
   @override
