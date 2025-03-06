@@ -552,8 +552,16 @@ class _SignUpViewState extends State<SignUpView> {
                             );
                       }
                     },
-                    child: const Text('REGISTER',
-                        style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8.0),
@@ -581,21 +589,64 @@ class _SignUpViewState extends State<SignUpView> {
       ),
     );
   }
+}
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    required String? Function(String?) validator,
-    bool obscureText = false,
-    Widget? prefixIcon,
-    Widget? suffixIcon,
-  }) {
-    return TextFormField(
+Widget _buildTextField({
+  required TextEditingController controller,
+  required String hintText,
+  required String? Function(String?) validator,
+  bool obscureText = false,
+  Widget? prefixIcon,
+  Widget? suffixIcon,
+}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: TextFormField(
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
-          prefixIcon: prefixIcon, suffixIcon: suffixIcon, hintText: hintText),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.black54), // Light hint color
+        filled: true,
+        fillColor: const Color(0xFFE6E6E6), // Light gray background
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide.none, // No border for default state
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(
+            color: Colors.grey, // Default border color
+            width: 1.0,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(
+            color: Colors.purple, // Highlighted border when focused
+            width: 2.0,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(
+            color: Colors.red, // Red border when error occurs
+            width: 2.0,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(
+            color: Colors.red, // Red border when error and focused
+            width: 2.0,
+          ),
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+      ),
       validator: validator,
-    );
-  }
+    ),
+  );
 }
