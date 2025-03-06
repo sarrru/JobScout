@@ -19,8 +19,6 @@ class _LoginViewState extends State<LoginView> {
   bool _isPasswordVisible = false;
   final FocusNode _usernameFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
-
-  final bool _rememberMe = false;
   final _gap = const SizedBox(height: 8);
 
   @override
@@ -136,12 +134,33 @@ class _LoginViewState extends State<LoginView> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      // Dispatch Login Event
                       context.read<LoginBloc>().add(
                             NavigateHomeScreenEvent(
                               destination: const HomeView(),
                               context: context,
                             ),
                           );
+
+                      // Show a Snackbar for successful login
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text(
+                            'Login Successfully',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                          backgroundColor: Colors.blue, // Blue background
+                          behavior:
+                              SnackBarBehavior.floating, // Floating snackbar
+                          margin: const EdgeInsets.all(16), // Adds margin
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(8), // Rounded corners
+                          ),
+                          duration: const Duration(
+                              seconds: 2), // Auto-dismiss after 2 sec
+                        ),
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -157,28 +176,6 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               const SizedBox(height: 8.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Forgot your password?',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgotpassword');
-                    },
-                    child: const Text(
-                      'Reset here',
-                      style: TextStyle(
-                        color: Colors.purple,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 8.0),
               SizedBox(
                 width: double.infinity,
