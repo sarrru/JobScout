@@ -116,7 +116,7 @@ class _JobViewPageState extends State<JobViewPage> {
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/off.jpg"),
+              backgroundImage: AssetImage("assets/images/img.jpg"),
             ),
           ),
         ],
