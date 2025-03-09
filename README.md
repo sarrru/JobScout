@@ -1,7 +1,9 @@
 # job_scout_project
 
 JobScout is a job search mobile application designed to help job seekers find and apply for employment opportunities efficiently. The platform provides users with access to a diverse range of job listings from various industries, allowing them to browse, filter, and apply for positions that match their skills and preferences. The app streamlines the job application process by enabling users to submit applications directly through the platform and track their application status.
-Appendix:![image](https://github.com/user-attachments/assets/c296f0f2-1d91-4c3b-915c-893e860ad1f6)
+&NewLine;
+&NewLine;
+![image](https://github.com/user-attachments/assets/c296f0f2-1d91-4c3b-915c-893e860ad1f6)
 ![image](https://github.com/user-attachments/assets/ff7460e8-f87c-4a78-9bf7-d728cb37b9fd)
 ![image](https://github.com/user-attachments/assets/c56e3a2e-6787-4370-976d-6c93703fb1c3)
 ![image](https://github.com/user-attachments/assets/273725c4-97f1-400e-b772-e95dde1e7e57)
